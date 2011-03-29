@@ -1,0 +1,51 @@
+#!/usr/bin/perl -w
+# Sends a ping to a Pompiedom rssCloud.
+# Copyright (C) 2011  Peter Stuifzand
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+use lib 'lib';
+use Pompiedom::Ping 'ping_feed';
+
+if (@ARGV == 1) {
+    my $arg = shift @ARGV;
+    if ($arg eq '--version') {
+        print <<"USAGE";
+pompiedom-ping $Pompiedom::Ping::VERSION
+Copyright (C) 2011 Peter Stuifzand
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Peter Stuifzand
+USAGE
+        exit;
+    }
+    else {
+        print STDERR "Unknown option '$arg'\n";
+        exit 1;
+    }
+}
+elsif (@ARGV == 2) {
+    my $ping_url = shift @ARGV;
+    my $feed_url = shift @ARGV;
+
+    if (!$ping_url || !$feed_url) {
+        print STDERR "Usage: ping_feed <pingurl> <feedurl>\n";
+        exit;
+    }
+
+    ping_feed($ping_url, $feed_url);
+}
+
