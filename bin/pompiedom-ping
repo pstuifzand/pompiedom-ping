@@ -37,15 +37,14 @@ USAGE
         exit 1;
     }
 }
-elsif (@ARGV == 2) {
-    my $ping_url = shift @ARGV;
-    my $feed_url = shift @ARGV;
 
-    if (!$ping_url || !$feed_url) {
-        print STDERR "Usage: ping_feed <pingurl> <feedurl>\n";
-        exit;
-    }
+my $ping_url = shift @ARGV;
+my $feed_url = shift @ARGV;
 
-    ping_feed($ping_url, $feed_url);
+if (!$ping_url || !$feed_url) {
+    print STDERR "Usage: ping_feed <pingurl> <feedurl>\n";
+    exit;
 }
+
+ping_feed($ping_url, $feed_url);
 
