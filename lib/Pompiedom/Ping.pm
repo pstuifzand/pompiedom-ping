@@ -32,6 +32,7 @@ sub ping_feed {
     if ($res->code == 200) {
         return 1;
     }
+    die "Error: " . $res->status_line;
     return;
 }
 
