@@ -1,0 +1,6 @@
+bin/pompiedom-ping
+lib/Pompiedom/Ping.pm
+Build.PL
+MANIFEST
+README
+LICENSE
